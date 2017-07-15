@@ -8,8 +8,8 @@
 
 //#define MAV 3.14
 //#define MLV 2.0
-#define MAV 255
-#define MLV 255
+#define MAV 6.28
+#define MLV 0.5
 
 #define MAX_VALUE 999
 
@@ -53,15 +53,18 @@ public:
         if(yellow_distance < red_distance)
         {
             //yellow chase
+            ROS_INFO("YELLOW APROCHE");
             target_angle = yellow_angle;
         }
         else if(red_distance < filtered_distance)
         {
             //red_chase
+            ROS_INFO("RED APROCHE");
             target_angle = red_angle;
         }
         else
         {
+            ROS_INFO("SEEK");
             target_angle = 90;
         }
 
@@ -94,7 +97,7 @@ public:
         switch(c)
         {
         case LEFT:
-            twist.linear.x = 0;
+            twist.linear.x = MLV/2;
             twist.angular.z = MAV;
             break;
         case LEFT_FORWARD:
@@ -102,7 +105,7 @@ public:
             twist.angular.z = MAV;
             break;
         case RIGHT:
-            twist.linear.x = 0;
+            twist.linear.x = MLV/2;
             twist.angular.z = -MAV;
             break;
         case RIGHT_FORWARD:
