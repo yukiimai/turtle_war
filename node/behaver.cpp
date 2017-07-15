@@ -39,9 +39,9 @@ public:
         yellow_distance = MAX_VALUE;
 
         ros::NodeHandle node;
-        red_laser_sub = node.subscribe("red_laser", 1, &RoboCtrl::redCallback, this);
-        yellow_laser_sub = node.subscribe("yellow_laser", 1, &RoboCtrl::yellowCallback, this);
-        filtered_laser_sub = node.subscribe("filtered_laser", 1, &RoboCtrl::filteredCallback, this);
+        red_laser_sub = node.subscribe("red_points", 1, &RoboCtrl::redCallback, this);
+        yellow_laser_sub = node.subscribe("yellow_points", 1, &RoboCtrl::yellowCallback, this);
+        filtered_laser_sub = node.subscribe("filtered_points", 1, &RoboCtrl::filteredCallback, this);
 
         twist_pub_ = node.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
     }
