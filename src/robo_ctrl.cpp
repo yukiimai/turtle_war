@@ -22,14 +22,12 @@ class RoboCtrl
 		{
 			ros::NodeHandle node;
 			odom_sub_ = node.subscribe("odom", 1, &RoboCtrl::odomCallback, this);
-			twist_pub_ = node.advertise<geometry_msgs::Twist>("cmd_vel", 1);
-
-
+            twist_pub_ = node.advertise<geometry_msgs::Twist>("/cmd_vel", 1);
 		}
 		void moveRobo()
 		{
 			geometry_msgs::Twist twist;
-			char c;
+            char c;
 			int kfd = 0;
 			struct termios cooked,raw;
 			tcgetattr(kfd, &cooked);

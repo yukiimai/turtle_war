@@ -6,6 +6,3 @@ sleep 5
 
 gnome-terminal -e "roslaunch turtle_war spawn_robot.launch"
 
-
-gnome-terminal -e "roslaunch turtle_war candy.launch"
-

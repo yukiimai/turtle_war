@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(turtle_war)
 
 ## Add support for C++11, supported in ROS Kinetic and newer
-# add_definitions(-std=c++11)
+add_definitions(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -13,6 +13,9 @@ find_package(catkin REQUIRED COMPONENTS
 	rospy
 	std_msgs
 	nav_msgs
+ pcl_ros
+  sensor_msgs
+  pcl_conversions
 )
 
 ## System dependencies are found with CMake's conventions
@@ -117,7 +120,7 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
-# include_directories(include)
+include_directories(include ${catkin_INCLUDE_DIRS})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -132,7 +135,6 @@ catkin_package(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(robo_ctrl src/robo_ctrl.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -145,7 +147,15 @@ add_executable(robo_ctrl src/robo_ctrl.cpp)
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(robo_ctrl
+
+add_executable(scan_cordinator node/scan_cordinator.cpp)
+add_executable(behaver node/behaver.cpp)
+# set_target_properties(${PROJECT_NAME}_node PROPERTIES OUTPUT_NAME node PREFIX "")
+# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(behaver
+   ${catkin_LIBRARIES}
+)
+target_link_libraries(scan_cordinator
    ${catkin_LIBRARIES}
 )
 
