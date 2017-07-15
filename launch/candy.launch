@@ -86,7 +86,7 @@
         </rosparam>
 </node>
 
-
+<!--
     <node pkg="gmapping" type="slam_gmapping" name="slam_gmapping" output="screen">
       <remap from="scan" to="/laser_scan"/>
       <param name="map_update_interval" value="1.0"/>
@@ -151,5 +151,5 @@
   <param name="recovery_alpha_slow" value="0.0"/>
   <param name="recovery_alpha_fast" value="0.0"/>
 </node>
-
+-->
 </launch>
